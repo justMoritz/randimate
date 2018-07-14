@@ -48,8 +48,6 @@ var randimate = function($selectors, type){
     classes = classLists.all;
   }
 
-  console.log(typeof type);
-
   $selectors.each(function() {
     if(typeof type === 'object'){
       randomclass = type.specific;
