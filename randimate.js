@@ -1,9 +1,8 @@
+var randimate = function($selectors, type){
+  type = type || false;
 
-  var randimate = function($selectors, type){
-    type = type || false;
-    
-    var classLists = {
-      all: ["bounce",	"flash",	"pulse",	"rubberBand",
+  var classLists = {
+    all: ["bounce",	"flash",	"pulse",	"rubberBand",
 "shake",	"headShake",	"swing",	"tada",
 "wobble",	"jello",	"bounceIn",	"bounceInDown",
 "bounceInLeft",	"bounceInRight",	"bounceInUp",	"bounceOut",
@@ -22,7 +21,7 @@
 "zoomOutDown",	"zoomOutLeft",	"zoomOutRight",	"zoomOutUp",
 "slideInDown",	"slideInLeft",	"slideInRight",	"slideInUp",
 "slideOutDown",	"slideOutLeft",	"slideOutRight",	"slideOutUp" ],
-      noout: ["bounce",	"flash",	"pulse",	"rubberBand",
+    noout: ["bounce",	"flash",	"pulse",	"rubberBand",
 "shake",	"headShake",	"swing",	"tada",
 "wobble",	"jello",	"bounceIn",	"bounceInDown",
 "bounceInLeft",	"bounceInRight",	"bounceInUp",	
@@ -33,27 +32,33 @@
 "rotateInUpRight",	"jackInTheBox",
 "rollIn",	"zoomIn",	"zoomInDown",
 "zoomInLeft",	"zoomInRight",	"zoomInUp"],
-      fade: ["fadeIn",	"fadeInDown",	"fadeInDownBig",	"fadeInLeft",
+    fade: ["fadeIn",	"fadeInDown",	"fadeInDownBig",	"fadeInLeft",
 "fadeInLeftBig",	"fadeInRight",	"fadeInRightBig",	"fadeInUp",
 "fadeInUpBig"],
-      zoom: ["rollIn",	"zoomIn",	"zoomInDown",
+    zoom: ["rollIn",	"zoomIn",	"zoomInDown",
 "zoomInLeft",	"zoomInRight",	"zoomInUp"],
-      rotate: ["rotateIn",	"rotateInDownLeft",	"rotateInDownRight",	"rotateInUpLeft",
+    rotate: ["rotateIn",	"rotateInDownLeft",	"rotateInDownRight",	"rotateInUpLeft",
 "rotateInUpRight"],
-      bounce: ["bounce", "bounceIn",	"bounceInDown",
+    bounce: ["bounce", "bounceIn",	"bounceInDown",
 "bounceInLeft",	"bounceInRight",	"bounceInUp"],
-    };
-    
-    var classes = classLists[type];
-    if(!type){
-      classes = classLists.all;
-    }
-    
-    $selectors.each(function() {
-      var randomnum   = Math.floor((Math.random() * classes.length) + 0),
-          randomclass = classes[randomnum];
-      $(this).addClass('wow').addClass(randomclass);
-    });
-    
-    new WOW().init();
   };
+
+  var classes = classLists[type];
+  if(!type){
+    classes = classLists.all;
+  }
+
+  console.log(typeof type);
+
+  $selectors.each(function() {
+    if(typeof type === 'object'){
+      randomclass = type.specific;
+    }else{
+      var randomnum   = Math.floor((Math.random() * classes.length) + 0);
+      var randomclass = classes[randomnum];
+    }
+    $(this).addClass('wow').addClass(randomclass);
+  });
+
+  new WOW().init();
+};
